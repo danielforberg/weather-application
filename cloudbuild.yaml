@@ -29,7 +29,7 @@ steps:
       - --service-account=cloud-functions-sa@$PROJECT_ID.iam.gserviceaccount.com
 
     waitFor:
-      - PIP-INSTALL
+      - PIP_INSTALL
 options:
   machineType: N1_HIGHCPU_32
   diskSizeGb: '1000'
