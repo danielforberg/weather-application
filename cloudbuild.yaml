@@ -1,0 +1,35 @@
+substitutions:
+  _WEATHER_APPLICATION_FUNCTION: "weather-application-function"
+  _WEATHER_APPLICATION_ENTRY_POINT: "forecast_request"
+  _REGION: "europe-west1"
+  _SECRET_REFERENCE: "openweather-api-token:latest"
+  _BASE_URL: "https://api.openweathermap.org/data/3.0/onecall"
+
+steps:
+  - name: python:3.9
+    id: PIP_INSTALL
+    entrypoint: pip
+    args: [ "install", "-r", "requirements.txt", "--user" ]
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: _WEATHER_APPLICATION_FUNCTION
+    args:
+      - gcloud
+      - beta
+      - functions
+      - deploy
+      - $_WEATHER_APPLICATION_FUNCTION
+      - --entry-point=$_WEATHER_APPLICATION_ENTRY_POINT
+      - --region=$_REGION
+      - --source=src
+      - --runtime=python39
+      - --set-env-vars=PROJECT_ID=$PROJECT_ID,BASE_URL=$_BASE_URL
+      - --set-secrets=SLACK_BOT_TOKEN=$_SECRET_REFERENCE
+      - --trigger-http
+      - --allow-unauthenticated
+      - --service-account=cloud-functions-sa@$PROJECT_ID.iam.gserviceaccount.com
+
+    waitFor:
+      - PIP-INSTALL
+options:
+  machineType: N1_HIGHCPU_32
+  diskSizeGb: '1000'
