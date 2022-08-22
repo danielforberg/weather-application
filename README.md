@@ -18,13 +18,13 @@ To be able to receive global weather alerts:
 * and pushes a pub/sub event captured by another function which handles the way the end-user output should be
 
 Architecture decisions:
-Start simple and continue to add complexity when needed
+* Start simple and continue to add complexity when needed
 
 Improve error handling
-Clean up code and separate for further reuse of functionality
+* Clean up code and separate for further reuse of functionality
 
 Automate with terraform setup everything with the Infrastructure as code
-Add unittests
-Update configuration
-Clear separation in GCP projects for different environments
-Add a LoadBalancer in front, managed certificate, NEG, backend service, https, dns a record and caa records(terraform)
+* Add unittests
+* Update configuration
+* Clear separation in GCP projects for different environments
+* Add a LoadBalancer in front, managed certificate, NEG, backend service, https, dns a record and caa records(terraform)
