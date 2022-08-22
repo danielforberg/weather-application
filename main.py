@@ -12,12 +12,12 @@ def forecast_http_request(request):
     return forecast(request)
 
 
-def forecast(request):
-    place = request.args.get('place')
+def forecast(request=None):
     locator = Nominatim(user_agent="weatherForcast")
-    if not place:
+    if not request:
         location = locator.geocode(DEFAULT_LOCATION)
     else:
+        place = request.args.get('place')
         location = locator.geocode(place)
 
     base_url = getenv('BASE_URL', DEFAULT_BASE_URL)
@@ -35,5 +35,4 @@ def forecast(request):
 
 
 if __name__ == '__main__':
-
-    print(forecast("Stockholm"))
+    print(forecast())
