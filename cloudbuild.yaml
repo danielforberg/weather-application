@@ -20,7 +20,6 @@ steps:
       - $_WEATHER_APPLICATION_FUNCTION
       - --entry-point=$_WEATHER_APPLICATION_ENTRY_POINT
       - --region=$_REGION
-      - --source=src
       - --runtime=python39
       - --set-env-vars=PROJECT_ID=$PROJECT_ID,BASE_URL=$_BASE_URL
       - --set-secrets=API_KEY=$_SECRET_REFERENCE
