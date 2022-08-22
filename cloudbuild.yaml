@@ -1,6 +1,6 @@
 substitutions:
   _WEATHER_APPLICATION_FUNCTION: "weather-application-function"
-  _WEATHER_APPLICATION_ENTRY_POINT: "forecast_request"
+  _WEATHER_APPLICATION_ENTRY_POINT: "forecast_http_request"
   _REGION: "europe-west1"
   _SECRET_REFERENCE: "openweather-api-token:latest"
   _BASE_URL: "https://api.openweathermap.org/data/3.0/onecall"
@@ -23,7 +23,7 @@ steps:
       - --source=src
       - --runtime=python39
       - --set-env-vars=PROJECT_ID=$PROJECT_ID,BASE_URL=$_BASE_URL
-      - --set-secrets=SLACK_BOT_TOKEN=$_SECRET_REFERENCE
+      - --set-secrets=API_KEY=$_SECRET_REFERENCE
       - --trigger-http
       - --allow-unauthenticated
       - --service-account=cloud-functions-sa@$PROJECT_ID.iam.gserviceaccount.com
