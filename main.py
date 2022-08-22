@@ -18,6 +18,7 @@ def forecast(request=None):
         location = locator.geocode(DEFAULT_LOCATION)
     else:
         place = request.args.get('place')
+        print(place)
         location = locator.geocode(place)
 
     base_url = getenv('BASE_URL', DEFAULT_BASE_URL)
